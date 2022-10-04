@@ -1,4 +1,4 @@
-package fr.industryportal.ontomapper.model;
+package fr.industryportal.ontomapper.model.entities;
 
 
 import lombok.AllArgsConstructor;
@@ -8,17 +8,16 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Abdelwadoud Rasmi
- * Entity for a set of mappings
+ * Entity for a mapping
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class MappingSet {
+public class Mapping {
 
     @Id
     @Getter
@@ -27,7 +26,6 @@ public class MappingSet {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "set")
-    private List<Mapping> mappings;
-
+    @ManyToOne
+    private MappingSet set;
 }
