@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -22,4 +24,9 @@ public class Author {
     @Getter
     @Setter
     private String label;
+
+    @Getter
+    @Setter
+    @ManyToMany
+    private List<Mapping> mappings;
 }

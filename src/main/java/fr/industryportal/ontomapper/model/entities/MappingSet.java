@@ -40,8 +40,8 @@ public class MappingSet {
 
     @Getter
     @Setter
-    @ManyToOne
-    private Creator creator;
+    @ManyToMany
+    private List<Creator> creators;
 
     @Getter
     @Setter
