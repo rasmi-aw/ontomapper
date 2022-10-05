@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * @author Abdelwadoud Rasmi
- * Enumeral values for
+ * Enumeral values for Predicate modifier
  */
 @AllArgsConstructor
 public enum PredicateModifier {

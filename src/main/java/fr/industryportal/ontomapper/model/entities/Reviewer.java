@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
+/**
+ * @author Abdelwadoud Rasmi
+ * Entity for a reviewer
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

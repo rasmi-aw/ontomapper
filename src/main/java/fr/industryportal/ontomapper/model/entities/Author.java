@@ -11,6 +11,10 @@ import javax.persistence.ManyToMany;
 import java.util.List;
 
 
+/**
+ * @author Abdelwadoud Rasmi
+ * Entity for a author
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
