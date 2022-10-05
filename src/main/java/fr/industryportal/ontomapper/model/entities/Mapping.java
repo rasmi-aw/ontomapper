@@ -22,7 +22,7 @@ public class Mapping {
     @Id
     @Getter
     @Setter
-    private Long id;
+    private String id;
 
     @Getter
     @Setter
