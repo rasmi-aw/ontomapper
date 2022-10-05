@@ -39,4 +39,9 @@ public class Creator {
     @ManyToMany
     private List<MappingSet> sets;
 
+    @Getter
+    @Setter
+    @ManyToMany
+    private List<Mapping> mappings;
+
 }
