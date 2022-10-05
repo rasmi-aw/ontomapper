@@ -1,9 +1,13 @@
 package fr.industryportal.ontomapper.model.entities.embeddables;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
  * @author Abdelwadoud Rasmi
  * Enumeral values for Entity that is being mapped
  */
+@AllArgsConstructor
 public enum EntityType {
     OWL_CLASS("owl:Class"),
     OWL_OBJECT_PROPERTY("owl:ObjectProperty"),
@@ -17,9 +21,7 @@ public enum EntityType {
     RDFS_DATATYPE("rdfs:Datatype"),
     RDF_PROPERTY("rdf:Property");
 
+    @Getter
     private final String value;
 
-    EntityType(String value) {
-        this.value = value;
-    }
 }
