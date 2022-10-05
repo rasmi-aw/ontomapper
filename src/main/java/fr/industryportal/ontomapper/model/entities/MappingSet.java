@@ -6,9 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -24,6 +22,24 @@ public class MappingSet {
     @Getter
     @Setter
     private String id;
+
+    @Getter
+    @Setter
+    private String version;
+
+    @Getter
+    @Setter
+    @OneToMany
+    private List<MappingSet> source;
+
+    @Getter
+    @Setter
+    private String description;
+
+    @Getter
+    @Setter
+    @ManyToOne
+    private Creator creator;
 
     @Getter
     @Setter
