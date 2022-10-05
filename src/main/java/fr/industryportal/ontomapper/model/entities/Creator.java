@@ -25,7 +25,6 @@ public class Creator {
     @Setter
     private String id;
 
-    @Id
     @Getter
     @Setter
     private String label;
