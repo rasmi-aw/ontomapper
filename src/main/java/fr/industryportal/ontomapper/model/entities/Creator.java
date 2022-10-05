@@ -24,6 +24,11 @@ public class Creator {
     @Setter
     private String id;
 
+    @Id
+    @Getter
+    @Setter
+    private String label;
+
     /**
      * @// TODO: 10/5/22 add the other needed information about this creator(His name etc...)
      */
