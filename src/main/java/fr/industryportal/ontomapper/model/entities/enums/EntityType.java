@@ -1,4 +1,4 @@
-package fr.industryportal.ontomapper.model.entities.embeddables;
+package fr.industryportal.ontomapper.model.entities.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

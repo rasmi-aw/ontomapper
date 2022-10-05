@@ -1,7 +1,7 @@
 package fr.industryportal.ontomapper.model.entities;
 
 
-import fr.industryportal.ontomapper.model.entities.embeddables.EntityType;
+import fr.industryportal.ontomapper.model.entities.enums.EntityType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

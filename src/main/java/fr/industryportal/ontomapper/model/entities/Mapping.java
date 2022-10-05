@@ -2,9 +2,9 @@ package fr.industryportal.ontomapper.model.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import fr.industryportal.ontomapper.model.entities.embeddables.EntityType;
-import fr.industryportal.ontomapper.model.entities.embeddables.MappingCardinality;
-import fr.industryportal.ontomapper.model.entities.embeddables.PredicateModifier;
+import fr.industryportal.ontomapper.model.entities.enums.EntityType;
+import fr.industryportal.ontomapper.model.entities.enums.MappingCardinality;
+import fr.industryportal.ontomapper.model.entities.enums.PredicateModifier;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
