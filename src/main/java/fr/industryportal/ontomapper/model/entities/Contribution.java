@@ -26,7 +26,7 @@ public class Contribution {
 
     @Getter
     @Setter
-    @OneToOne
+    @ManyToOne
     private User user;
 
     @Getter

@@ -31,6 +31,6 @@ public class User {
 
     @Getter
     @Setter
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Contribution> contributions;
 }
