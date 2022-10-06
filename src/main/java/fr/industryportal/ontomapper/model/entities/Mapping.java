@@ -72,7 +72,7 @@ public class Mapping {
     @Getter
     @Setter
     @ManyToMany
-    private List<Contributor> contributors;
+    private List<Contribution> contributions;
 
     @Getter
     @Setter

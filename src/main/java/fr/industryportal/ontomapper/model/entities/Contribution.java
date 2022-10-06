@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Contributor {
+public class Contribution {
 
     @Id
     @Getter
@@ -36,7 +36,7 @@ public class Contributor {
 
     @Getter
     @Setter
-    @ManyToMany
+    @OneToMany
     private List<MappingSet> sets;
 
     @Getter
