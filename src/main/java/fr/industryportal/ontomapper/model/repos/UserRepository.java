@@ -1,10 +1,10 @@
 package fr.industryportal.ontomapper.model.repos;
 
-import fr.industryportal.ontomapper.model.entities.Creator;
+import fr.industryportal.ontomapper.model.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author Abdelwadoud Rasmi
  */
-public interface CreatorRepository extends JpaRepository<Creator,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }

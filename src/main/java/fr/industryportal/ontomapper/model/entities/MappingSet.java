@@ -41,7 +41,7 @@ public class MappingSet {
     @Getter
     @Setter
     @ManyToMany
-    private List<Creator> creators;
+    private List<Contributor> creators;
 
     @Getter
     @Setter
@@ -108,7 +108,7 @@ public class MappingSet {
 
     @Getter
     @Setter
-    private String  other;
+    private String other;
 
     @Getter
     @Setter

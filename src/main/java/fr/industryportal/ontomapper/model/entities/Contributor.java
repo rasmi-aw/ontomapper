@@ -1,36 +1,38 @@
 package fr.industryportal.ontomapper.model.entities;
 
+
+import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * @author Abdelwadoud Rasmi
- * Entity for mappingset creator
+ * Entity for a contributor, he can be an author, reviewer
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Creator {
+public class Contributor {
 
     @Id
     @Getter
     @Setter
-    private String id;
+    private Long id;
 
     @Getter
     @Setter
-    private String label;
+    @OneToOne
+    private User user;
 
-    /**
-     * @// TODO: 10/5/22 add the other needed information about this creator(His name etc...)
-     */
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private ContributorType type;
 
     @Getter
     @Setter
@@ -41,5 +43,4 @@ public class Creator {
     @Setter
     @ManyToMany
     private List<Mapping> mappings;
-
 }

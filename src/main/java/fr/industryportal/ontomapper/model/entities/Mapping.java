@@ -72,17 +72,7 @@ public class Mapping {
     @Getter
     @Setter
     @ManyToMany
-    private List<Author> authors;
-
-    @Getter
-    @Setter
-    @ManyToMany
-    private List<Reviewer> reviewers;
-
-    @Getter
-    @Setter
-    @ManyToMany
-    private List<Creator> creators;
+    private List<Contributor> contributors;
 
     @Getter
     @Setter
