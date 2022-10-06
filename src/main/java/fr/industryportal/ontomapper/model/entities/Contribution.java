@@ -36,7 +36,7 @@ public class Contribution {
 
     @Getter
     @Setter
-    @OneToMany
+    @ManyToMany
     private List<MappingSet> sets;
 
     @Getter
