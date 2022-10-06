@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author Abdelwadoud Rasmi
- * THis is the main entrypoint of the app
+ * This is the main entrypoint of the app
  */
 @SpringBootApplication
 public class OntomapperApplication implements CommandLineRunner {
