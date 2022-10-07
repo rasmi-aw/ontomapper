@@ -116,6 +116,11 @@ public class MappingSet {
 
     @Getter
     @Setter
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created_at;
+
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "set")
     private List<Mapping> mappings;
 

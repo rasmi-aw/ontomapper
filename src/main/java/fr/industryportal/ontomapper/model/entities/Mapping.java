@@ -176,6 +176,11 @@ public class Mapping {
 
     @Getter
     @Setter
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created_at;
+
+    @Getter
+    @Setter
     @ManyToOne
     @JsonIgnore
     private MappingSet set;
