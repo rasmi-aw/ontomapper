@@ -1,6 +1,6 @@
 package fr.industryportal.ontomapper.model.repos;
 
-import fr.industryportal.ontomapper.model.entities.User;
+import fr.industryportal.ontomapper.model.entities.Contributor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * @author Abdelwadoud Rasmi
  */
 @RepositoryRestResource
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface ContributorRepository extends JpaRepository<Contributor, Long> {
 }

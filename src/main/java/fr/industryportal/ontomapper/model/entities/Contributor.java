@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "users")
-public class User {
+public class Contributor {
 
     @Id
     @Getter
@@ -31,6 +31,6 @@ public class User {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "contributor")
     private List<Contribution> contributions;
 }
