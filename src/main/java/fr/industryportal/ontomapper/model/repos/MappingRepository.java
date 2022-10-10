@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * @author Abdelwadoud Rasmi
  */
-public interface MappingRepository extends JpaRepository<Mapping,Long> {
+public interface MappingRepository extends JpaRepository<Mapping, Long> {
 }
