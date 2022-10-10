@@ -26,7 +26,12 @@ public class Mapping {
     @Id
     @Getter
     @Setter
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Getter
+    @Setter
+    private String mapping_id;
 
     @Getter
     @Setter
