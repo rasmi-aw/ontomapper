@@ -69,7 +69,7 @@ public class MappingRequest {
 
     @Getter
     @Setter
-    private List<Contribution> contributions;
+    private List<ContributorRequest> contributors;
 
     @Getter
     @Setter
