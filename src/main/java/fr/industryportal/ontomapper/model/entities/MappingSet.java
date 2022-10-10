@@ -24,10 +24,11 @@ public class MappingSet {
     @Getter
     @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Getter
     @Setter
+    @Column(unique = true)
     private String mapping_set_id;
 
     @Getter

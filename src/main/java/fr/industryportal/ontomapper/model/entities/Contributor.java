@@ -23,7 +23,7 @@ public class Contributor {
     @Getter
     @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Getter
     @Setter
