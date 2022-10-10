@@ -1,7 +1,6 @@
 package fr.industryportal.ontomapper.model.requests;
 
 import fr.industryportal.ontomapper.model.entities.Contribution;
-import fr.industryportal.ontomapper.model.entities.Mapping;
 import fr.industryportal.ontomapper.model.entities.enums.EntityType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -109,6 +108,6 @@ public class SetRequest {
 
     @Getter
     @Setter
-    private List<Mapping> mappings;
+    private List<MappingRequest> mappings;
 
 }
