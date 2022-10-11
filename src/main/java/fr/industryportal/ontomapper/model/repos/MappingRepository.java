@@ -14,6 +14,6 @@ public interface MappingRepository extends JpaRepository<Mapping, Long> {
     /**
      * get a list of mappings depending based on their set_id, and "after <= id < before"
      */
-    @Query("SELECT m FROM Mapping m WHERE (m.set.id = :set_id) AND (m.id >= :afterOrEqual) AND (m.id < :before)")
-    List<Mapping> findAllBySetIdAndIdBetween(long set_id, long afterOrEqual, long before);
+    @Query(value = "SELECT * FROM Mapping m WHERE (set_id = :setId) AND (id >= :afterOrEqual)  LIMIT 50 ",nativeQuery = true)
+    List<Mapping> findFiftyBySetIdAndIdAndIdAfter(long setId, long afterOrEqual);
 }

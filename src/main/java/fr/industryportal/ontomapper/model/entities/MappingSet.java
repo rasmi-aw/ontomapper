@@ -1,6 +1,7 @@
 package fr.industryportal.ontomapper.model.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.industryportal.ontomapper.model.entities.enums.EntityType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -128,6 +129,7 @@ public class MappingSet {
     @Getter
     @Setter
     @OneToMany(mappedBy = "set")
+    @JsonIgnore
     private List<Mapping> mappings;
 
 }
