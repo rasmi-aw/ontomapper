@@ -132,4 +132,12 @@ public class MappingSet {
     @JsonIgnore
     private List<Mapping> mappings;
 
+
+    @Override
+    public boolean equals(Object set) {
+        if (set == null || !(set instanceof MappingSet)) return false;
+        MappingSet s = ((MappingSet) set);
+        return (s.id != null && s.id.equals(id))
+                || (s.mapping_set_id != null && s.mapping_set_id.equals(mapping_set_id));
+    }
 }
