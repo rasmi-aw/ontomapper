@@ -27,6 +27,7 @@ public class Contributor {
 
     @Getter
     @Setter
+    @Column(unique = true)
     private String contributor_id;
 
     @Getter

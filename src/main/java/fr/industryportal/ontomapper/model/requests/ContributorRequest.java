@@ -1,5 +1,7 @@
 package fr.industryportal.ontomapper.model.requests;
 
+import fr.industryportal.ontomapper.helpers.DBCast;
+import fr.industryportal.ontomapper.model.entities.Contributor;
 import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +17,7 @@ import javax.persistence.Enumerated;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContributorRequest {
+public class ContributorRequest implements DBCast<Contributor, Void> {
 
     @Getter
     @Setter
@@ -30,4 +32,8 @@ public class ContributorRequest {
     @Enumerated(EnumType.STRING)
     private ContributorType type;
 
+    @Override
+    public Contributor toDBModel(Void unused) {
+        return new Contributor(null, id, label, null);
+    }
 }

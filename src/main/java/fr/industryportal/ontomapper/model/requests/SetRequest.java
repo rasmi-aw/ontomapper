@@ -1,12 +1,18 @@
 package fr.industryportal.ontomapper.model.requests;
 
-import fr.industryportal.ontomapper.model.entities.Contribution;
+import fr.industryportal.ontomapper.helpers.DBCast;
+import fr.industryportal.ontomapper.model.entities.Contributor;
+import fr.industryportal.ontomapper.model.entities.MappingSet;
 import fr.industryportal.ontomapper.model.entities.enums.EntityType;
+import fr.industryportal.ontomapper.model.repos.ContributionRepository;
+import fr.industryportal.ontomapper.model.repos.ContributorRepository;
+import fr.industryportal.ontomapper.model.repos.MappingSetRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +22,7 @@ import java.util.List;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-public class SetRequest {
+public class SetRequest implements DBCast<MappingSet, MappingSetRepository> {
 
     @Getter
     @Setter
@@ -32,7 +38,7 @@ public class SetRequest {
 
     @Getter
     @Setter
-    private List<SetRequest> source;
+    private List<Long> source;
 
     @Getter
     @Setter
@@ -40,7 +46,7 @@ public class SetRequest {
 
     @Getter
     @Setter
-    private List<Contribution> creators;
+    private List<ContributorRequest> creators;
 
     @Getter
     @Setter
@@ -114,6 +120,14 @@ public class SetRequest {
     @Setter
     private List<MappingRequest> mappings;
 
-    private toDBModel
-
+    @Override
+    public MappingSet toDBModel(MappingSetRepository mappingSetRepository) {
+        return new MappingSet(id, mapping_set_id, version,
+                mappingSetRepository.findAllById(source), description, null,
+                license, subject_type, subject_source, subject_source_version, object_type,
+                object_source, object_source_version, mapping_provider, mapping_tool,
+                mapping_date, subject_match_field, object_match_field,
+                subject_preprocessing, object_preprocessing, see_also, other, comment,
+                new Date(), null);
+    }
 }

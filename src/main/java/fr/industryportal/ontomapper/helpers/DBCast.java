@@ -1,4 +1,4 @@
-package fr.industryportal.ontomapper.model.requests;
+package fr.industryportal.ontomapper.helpers;
 
 /**
  * @author Abdelwadoud Rasmi

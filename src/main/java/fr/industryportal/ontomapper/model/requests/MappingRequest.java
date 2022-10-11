@@ -1,6 +1,6 @@
 package fr.industryportal.ontomapper.model.requests;
 
-import fr.industryportal.ontomapper.model.entities.Contribution;
+import fr.industryportal.ontomapper.helpers.DBCast;
 import fr.industryportal.ontomapper.model.entities.Mapping;
 import fr.industryportal.ontomapper.model.entities.enums.EntityType;
 import fr.industryportal.ontomapper.model.entities.enums.MappingCardinality;
