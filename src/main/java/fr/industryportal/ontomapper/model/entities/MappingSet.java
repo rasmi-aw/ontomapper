@@ -124,6 +124,7 @@ public class MappingSet {
     @Getter
     @Setter
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
     private Date created_at;
 
     @Getter

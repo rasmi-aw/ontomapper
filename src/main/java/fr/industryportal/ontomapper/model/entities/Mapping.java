@@ -183,6 +183,7 @@ public class Mapping {
     @Getter
     @Setter
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
     private Date created_at;
 
     @Getter
@@ -190,4 +191,13 @@ public class Mapping {
     @ManyToOne
     @JsonIgnore
     private MappingSet set;
+
+    @Override
+    public boolean equals(Object mapping) {
+        if (mapping == null || !(mapping instanceof Mapping)) return false;
+        Mapping m = ((Mapping) mapping);
+        return (m.id != null && m.id.equals(id))
+                || (m.mapping_id != null && m.mapping_id.equals(mapping_id));
+    }
+
 }
