@@ -1,9 +1,11 @@
 package fr.industryportal.ontomapper.model.requests;
 
 import fr.industryportal.ontomapper.model.entities.Contribution;
+import fr.industryportal.ontomapper.model.entities.Mapping;
 import fr.industryportal.ontomapper.model.entities.enums.EntityType;
 import fr.industryportal.ontomapper.model.entities.enums.MappingCardinality;
 import fr.industryportal.ontomapper.model.entities.enums.PredicateModifier;
+import fr.industryportal.ontomapper.model.repos.MappingSetRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,11 +23,15 @@ import java.util.List;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-public class MappingRequest {
+public class MappingRequest implements DBCast<Mapping, MappingSetRepository> {
 
     @Getter
     @Setter
-    private String id;
+    private Long id;
+
+    @Getter
+    @Setter
+    private String mapping_id;
 
     @Getter
     @Setter
@@ -171,4 +177,21 @@ public class MappingRequest {
     @Getter
     @Setter
     private Long set_id;
+
+
+    @Override
+    public Mapping toDBModel(MappingSetRepository mappingSetRepository) {
+        return new Mapping(
+                id, mapping_id, subject_id, subject_label, subject_category,
+                predicate_id, predicate_label, predicate_modifier, object_id,
+                object_label, object_category, justification, null,
+                license, subject_type, subject_source, subject_source_version,
+                object_type, object_source, object_source_version,
+                mapping_provider, mapping_source, cardinality, mapping_tool,
+                mapping_tool_version, mapping_date, confidence, subject_match_field,
+                object_match_field, match_string, subject_preprocessing,
+                object_preprocessing, semantic_similarity_score, semantic_similarity_measure,
+                see_also, other, comment, null,
+                mappingSetRepository.findById(set_id).get());
+    }
 }
