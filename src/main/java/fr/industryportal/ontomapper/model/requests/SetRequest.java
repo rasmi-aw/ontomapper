@@ -20,7 +20,11 @@ public class SetRequest {
 
     @Getter
     @Setter
-    private String id;
+    private Long id;
+
+    @Getter
+    @Setter
+    private String mapping_set_id;
 
     @Getter
     @Setter
@@ -109,5 +113,7 @@ public class SetRequest {
     @Getter
     @Setter
     private List<MappingRequest> mappings;
+
+    private toDBModel
 
 }
