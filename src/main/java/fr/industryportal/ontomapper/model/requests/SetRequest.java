@@ -116,10 +116,6 @@ public class SetRequest implements DBCast<MappingSet, MappingSetRepository> {
     @Setter
     private String comment;
 
-    @Getter
-    @Setter
-    private List<MappingRequest> mappings;
-
     @Override
     public MappingSet toDBModel(MappingSetRepository mappingSetRepository) {
         return new MappingSet(id, mapping_set_id, version,
