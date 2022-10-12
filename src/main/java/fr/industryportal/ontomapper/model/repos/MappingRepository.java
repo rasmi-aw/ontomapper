@@ -4,7 +4,6 @@ import fr.industryportal.ontomapper.model.entities.Mapping;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -17,6 +16,10 @@ public interface MappingRepository extends JpaRepository<Mapping, Long> {
      */
     @Query(value = "SELECT * FROM Mapping m WHERE (set_id = :setId) AND (id >= :afterOrEqual)  LIMIT 50 ", nativeQuery = true)
     List<Mapping> findFiftyBySetIdAndIdAndIdAfter(long setId, long afterOrEqual);
+
+    @Override
+    @Query(value = "SELECT * FROM mapping WHERE deleted <> true ", nativeQuery = true)
+    List<Mapping> findAll();
 
 
 }
