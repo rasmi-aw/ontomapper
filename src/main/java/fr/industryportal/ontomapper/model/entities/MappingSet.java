@@ -134,6 +134,11 @@ public class MappingSet {
     @JsonIgnore
     private List<Mapping> mappings;
 
+    @Getter
+    @Setter
+    @JsonIgnore
+    private boolean deleted;
+
 
     @Override
     public boolean equals(Object set) {

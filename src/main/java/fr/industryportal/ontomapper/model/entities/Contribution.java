@@ -1,6 +1,7 @@
 package fr.industryportal.ontomapper.model.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,4 +45,9 @@ public class Contribution {
     @Setter
     @ManyToMany
     private List<Mapping> mappings;
+
+    @Getter
+    @Setter
+    @JsonIgnore
+    private boolean deleted;
 }

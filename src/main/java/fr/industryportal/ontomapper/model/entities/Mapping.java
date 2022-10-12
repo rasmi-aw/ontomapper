@@ -192,6 +192,11 @@ public class Mapping {
     @JsonIgnore
     private MappingSet set;
 
+    @Getter
+    @Setter
+    @JsonIgnore
+    private boolean deleted;
+
     @Override
     public boolean equals(Object mapping) {
         if (mapping == null || !(mapping instanceof Mapping)) return false;

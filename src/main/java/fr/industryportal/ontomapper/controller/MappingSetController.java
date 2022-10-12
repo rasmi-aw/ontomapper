@@ -40,6 +40,10 @@ public class MappingSetController {
         return CacheSet.getInstance(mappingSetRepository).getSets();
     }
 
+
+    /**
+     * Add or delete a list of mappingSets
+     */
     @PostMapping("")
     public void addOrEditMappingSets(@RequestBody List<SetRequest> sets) {
         //
@@ -59,13 +63,22 @@ public class MappingSetController {
                     creator = contributorRepository.findByContributorId(c.getId());
                 }
                 List<MappingSet> mappingSets = Stream.of(finalS).collect(Collectors.toList());
-                contributionRepository.save(new Contribution(null, creator, ContributorType.CREATOR, mappingSets, null));
+                contributionRepository.save(new Contribution(null, creator, ContributorType.CREATOR, mappingSets, null, false));
             });
         });
         //
         CacheSet
                 .getInstance(mappingSetRepository)
                 .rearm();
+    }
+
+
+    /**
+     * Delete a mapping set along with its mappings
+     */
+    @DeleteMapping("")
+    public void deleteSets(@RequestBody List<Long> sets) {
+
     }
 
 }

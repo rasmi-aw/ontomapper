@@ -124,6 +124,6 @@ public class SetRequest implements DBCast<MappingSet, MappingSetRepository> {
                 object_type, object_source, object_source_version, mapping_provider,
                 mapping_tool, mapping_date, subject_match_field, object_match_field,
                 subject_preprocessing, object_preprocessing, see_also, other, comment,
-                new Date(), null);
+                new Date(), null, false);
     }
 }

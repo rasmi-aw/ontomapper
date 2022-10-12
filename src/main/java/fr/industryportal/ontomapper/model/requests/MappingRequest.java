@@ -192,6 +192,6 @@ public class MappingRequest implements DBCast<Mapping, MappingSetRepository> {
                 object_match_field, match_string, subject_preprocessing,
                 object_preprocessing, semantic_similarity_score, semantic_similarity_measure,
                 see_also, other, comment, new Date(),
-                mappingSetRepository.findById(set_id).get());
+                mappingSetRepository.findById(set_id).get(),false);
     }
 }

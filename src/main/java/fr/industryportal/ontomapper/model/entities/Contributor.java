@@ -39,4 +39,9 @@ public class Contributor {
     @OneToMany(mappedBy = "contributor")
     @JsonIgnore
     private List<Contribution> contributions;
+
+    @Getter
+    @Setter
+    @JsonIgnore
+    private boolean deleted;
 }
