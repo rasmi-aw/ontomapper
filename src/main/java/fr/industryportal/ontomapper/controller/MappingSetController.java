@@ -52,7 +52,7 @@ public class MappingSetController {
             // inserting or updating the mapping set
             s = mappingSetRepository.findByStringId(s.getMapping_set_id());
             if (s == null)
-                s = mappingSetRepository.save(s);
+                s = mappingSetRepository.save(setRequest.toDBModel(mappingSetRepository));
             //saving creators (as contributors) if they don't exist
             MappingSet finalS = s;
             setRequest.getCreators().forEach(c -> {
