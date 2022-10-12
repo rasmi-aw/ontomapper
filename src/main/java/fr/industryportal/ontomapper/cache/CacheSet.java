@@ -14,7 +14,6 @@ import java.util.List;
 public class CacheSet {
     private static CacheSet instance;
     private MappingSetRepository mappingSetRepository;
-
     @Getter
     private List<MappingSet> sets;
 
@@ -32,7 +31,7 @@ public class CacheSet {
      */
     private CacheSet(MappingSetRepository mappingSetRepository) {
         this.mappingSetRepository = mappingSetRepository;
-        sets = mappingSetRepository.findAll();
+        rearm();
     }
 
     /**
