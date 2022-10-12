@@ -2,8 +2,10 @@ package fr.industryportal.ontomapper.model.repos;
 
 import fr.industryportal.ontomapper.model.entities.Mapping;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -20,6 +22,12 @@ public interface MappingRepository extends JpaRepository<Mapping, Long> {
     @Override
     @Query(value = "SELECT * FROM mapping WHERE deleted <> true ", nativeQuery = true)
     List<Mapping> findAll();
+
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE mapping  SET deleted = TRUE WHERE set_id = :set_id", nativeQuery = true)
+    void deleteBySetId(Long set_id);
 
 
 }

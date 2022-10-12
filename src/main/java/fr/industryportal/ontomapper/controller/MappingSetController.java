@@ -7,6 +7,7 @@ import fr.industryportal.ontomapper.model.entities.MappingSet;
 import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
 import fr.industryportal.ontomapper.model.repos.ContributionRepository;
 import fr.industryportal.ontomapper.model.repos.ContributorRepository;
+import fr.industryportal.ontomapper.model.repos.MappingRepository;
 import fr.industryportal.ontomapper.model.repos.MappingSetRepository;
 import fr.industryportal.ontomapper.model.requests.SetRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class MappingSetController {
 
     @Autowired
     private MappingSetRepository mappingSetRepository;
+
+    @Autowired
+    private MappingRepository mappingRepository;
 
     @Autowired
     private ContributorRepository contributorRepository;
@@ -78,7 +82,14 @@ public class MappingSetController {
      */
     @DeleteMapping("")
     public void deleteSets(@RequestBody List<Long> sets) {
-
+        sets.forEach(set -> {
+            mappingRepository.deleteBySetId(set);
+            mappingSetRepository.deleteById(set);
+        });
+        //
+        CacheSet
+                .getInstance(mappingSetRepository)
+                .rearm();
     }
 
 }
