@@ -29,7 +29,7 @@ public class MappingSet {
 
     @Getter
     @Setter
-    @Column(unique = true)
+    @Column(unique = true, updatable = false)
     private String mapping_set_id;
 
     @Getter
@@ -38,7 +38,7 @@ public class MappingSet {
 
     @Getter
     @Setter
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<MappingSet> source;
 
     @Getter
@@ -48,6 +48,7 @@ public class MappingSet {
     @Getter
     @Setter
     @ManyToMany
+    @JsonIgnore
     private List<Contribution> creators;
 
     @Getter
