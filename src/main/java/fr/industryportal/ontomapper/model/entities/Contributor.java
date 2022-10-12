@@ -16,7 +16,7 @@ import java.util.List;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "users")
+@Entity
 public class Contributor {
 
     @Id
