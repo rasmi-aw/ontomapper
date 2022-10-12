@@ -205,4 +205,9 @@ public class Mapping {
                 || (m.mapping_id != null && m.mapping_id.equals(mapping_id));
     }
 
+    @Override
+    public int hashCode() {
+        int k = mapping_id.length() + id.intValue() / 3;
+        return id.intValue();
+    }
 }

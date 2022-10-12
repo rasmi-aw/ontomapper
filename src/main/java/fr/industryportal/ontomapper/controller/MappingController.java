@@ -1,6 +1,7 @@
 package fr.industryportal.ontomapper.controller;
 
 
+import fr.industryportal.ontomapper.cache.CacheMapping;
 import fr.industryportal.ontomapper.model.entities.Mapping;
 import fr.industryportal.ontomapper.model.repos.MappingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,6 @@ public class MappingController {
      */
     @GetMapping("")
     public List<Mapping> getFiftyMappings(@RequestParam Long set_id, @RequestParam Long from) {
-        return mappingRepository.findFiftyBySetIdAndIdAndIdAfter(set_id, from);
+        return CacheMapping.getInstance(mappingRepository).get(set_id, from);
     }
 }
