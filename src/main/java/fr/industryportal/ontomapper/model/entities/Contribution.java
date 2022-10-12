@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(name = "uniqueCreatorForMappingSet", columnNames = {"contributor_id", "type"})})
 public class Contribution {
 
     @Id

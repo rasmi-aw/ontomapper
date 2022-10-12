@@ -1,13 +1,21 @@
 package fr.industryportal.ontomapper.controller;
 
 import fr.industryportal.ontomapper.cache.CacheSet;
+import fr.industryportal.ontomapper.model.entities.Contribution;
+import fr.industryportal.ontomapper.model.entities.Contributor;
 import fr.industryportal.ontomapper.model.entities.MappingSet;
+import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
+import fr.industryportal.ontomapper.model.repos.ContributionRepository;
+import fr.industryportal.ontomapper.model.repos.ContributorRepository;
 import fr.industryportal.ontomapper.model.repos.MappingSetRepository;
 import fr.industryportal.ontomapper.model.requests.SetRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -21,6 +29,13 @@ public class MappingSetController {
     @Autowired
     private MappingSetRepository mappingSetRepository;
 
+    @Autowired
+    private ContributorRepository contributorRepository;
+
+    @Autowired
+    private ContributionRepository contributionRepository;
+
+
     @GetMapping("")
     public List<MappingSet> getAllSets() {
         return CacheSet.getInstance(mappingSetRepository).getSets();
@@ -30,8 +45,23 @@ public class MappingSetController {
     public void addOrEditMappingSets(@RequestBody List<SetRequest> sets) {
         List<MappingSet> storedSets = CacheSet.getInstance(mappingSetRepository).getSets();
         //
-        sets.stream().forEach(setRequest -> {
-            MappingSet storedSet = storedSets.get(storedSets.indexOf(setRequest.toDBModel(null)));
+        sets.forEach(setRequest -> {
+            MappingSet s = setRequest.toDBModel(mappingSetRepository);
+            // inserting or updating the mapping set
+            s = mappingSetRepository.save(s);
+            //saving creators (as contributors) if they don't exist
+            MappingSet finalS = s;
+            setRequest.getCreators().forEach(c -> {
+                Contributor creator;
+                try {
+                    creator = contributorRepository.save(c.toDBModel(null));
+                } catch (Exception e) {
+                    creator = contributorRepository.findByContributorId(c.getId());
+                }
+                List<MappingSet> mappingSets = Stream.of(finalS).collect(Collectors.toList());
+                contributionRepository.save(new Contribution(null, creator, ContributorType.CREATOR, mappingSets, null));
+            });
+
         });
     }
 

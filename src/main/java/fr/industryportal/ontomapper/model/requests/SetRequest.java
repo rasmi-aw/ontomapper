@@ -38,7 +38,7 @@ public class SetRequest implements DBCast<MappingSet, MappingSetRepository> {
 
     @Getter
     @Setter
-    private List<Long> source;
+    private List<Long> source = new ArrayList<>();
 
     @Getter
     @Setter
@@ -119,10 +119,10 @@ public class SetRequest implements DBCast<MappingSet, MappingSetRepository> {
     @Override
     public MappingSet toDBModel(MappingSetRepository mappingSetRepository) {
         return new MappingSet(id, mapping_set_id, version,
-                mappingSetRepository.findAllById(source), description, null,
-                license, subject_type, subject_source, subject_source_version, object_type,
-                object_source, object_source_version, mapping_provider, mapping_tool,
-                mapping_date, subject_match_field, object_match_field,
+                source == null ? null : mappingSetRepository.findAllById(source), description,
+                null, license, subject_type, subject_source, subject_source_version,
+                object_type, object_source, object_source_version, mapping_provider,
+                mapping_tool, mapping_date, subject_match_field, object_match_field,
                 subject_preprocessing, object_preprocessing, see_also, other, comment,
                 new Date(), null);
     }
