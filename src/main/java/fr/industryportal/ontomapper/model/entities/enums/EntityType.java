@@ -19,9 +19,18 @@ public enum EntityType {
     RDFS_CLASS("rdfs:Class"),
     RDFS_LITERAL("rdfs:Literal"),
     RDFS_DATATYPE("rdfs:Datatype"),
-    RDF_PROPERTY("rdf:Property");
+    RDF_PROPERTY("rdf:Property"),
+    NULL(null);
 
-    @Getter
     private final String value;
 
+    public String getValue() {
+        return value == null ? "" : value;
+    }
+
+
+    @Override
+    public String toString() {
+        return getValue();
+    }
 }

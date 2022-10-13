@@ -5,6 +5,7 @@ import fr.industryportal.ontomapper.model.entities.Contribution;
 import fr.industryportal.ontomapper.model.entities.Contributor;
 import fr.industryportal.ontomapper.model.entities.MappingSet;
 import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
+import fr.industryportal.ontomapper.model.entities.enums.EntityType;
 import fr.industryportal.ontomapper.model.repos.ContributionRepository;
 import fr.industryportal.ontomapper.model.repos.ContributorRepository;
 import fr.industryportal.ontomapper.model.repos.MappingRepository;
@@ -13,6 +14,7 @@ import fr.industryportal.ontomapper.model.requests.SetRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -46,34 +48,35 @@ public class MappingSetController {
 
     @GetMapping("/match")
     public List<MappingSet> getSetsByStringMatch(@RequestParam String string) {
-        System.out.println(string);
         string = string.toLowerCase().trim();
+        if (string.isEmpty())
+            return new ArrayList<>();
+        //
         String finalMatch = string;
 
         return CacheSet
                 .getInstance(mappingSetRepository)
                 .getSets()
                 .stream()
-                .filter(ms ->
-                        ms.getMapping_set_id().toLowerCase().contains(finalMatch)
-                                || ms.getVersion().toLowerCase().contains(finalMatch)
-                                || ms.getDescription().toLowerCase().contains(finalMatch)
-                                || ms.getLicense().toLowerCase().contains(finalMatch)
-                                || ms.getSubject_type().getValue().toLowerCase().contains(finalMatch)
-                                || ms.getSubject_source().toLowerCase().contains(finalMatch)
-                                || ms.getSubject_source_version().toLowerCase().contains(finalMatch)
-                                || ms.getObject_type().getValue().toLowerCase().contains(finalMatch)
-                                || ms.getObject_source().toLowerCase().contains(finalMatch)
-                                || ms.getObject_source_version().toLowerCase().contains(finalMatch)
-                                || ms.getMapping_provider().toLowerCase().contains(finalMatch)
-                                || ms.getMapping_tool().toLowerCase().contains(finalMatch)
-                                || ms.getSubject_match_field().toLowerCase().contains(finalMatch)
-                                || ms.getObject_match_field().toLowerCase().contains(finalMatch)
-                                || ms.getObject_preprocessing().toLowerCase().contains(finalMatch)
-                                || ms.getSubject_preprocessing().toLowerCase().contains(finalMatch)
-                                || ms.getSee_also().toLowerCase().contains(finalMatch)
-                                || ms.getOther().toLowerCase().contains(finalMatch)
-                                || ms.getComment().toLowerCase().contains(finalMatch))
+                .filter(ms -> contains(ms.getMapping_set_id(), finalMatch)
+                        || contains(ms.getVersion(), finalMatch)
+                        || contains(ms.getDescription(), finalMatch)
+                        || contains(ms.getLicense(), finalMatch)
+                        || contains(ms.getSubject_type(), finalMatch)
+                        || contains(ms.getSubject_source(), finalMatch)
+                        || contains(ms.getSubject_source_version(), finalMatch)
+                        || contains(ms.getObject_type(), finalMatch)
+                        || contains(ms.getObject_source(), finalMatch)
+                        || contains(ms.getObject_source_version(), finalMatch)
+                        || contains(ms.getMapping_provider(), finalMatch)
+                        || contains(ms.getMapping_tool(), finalMatch)
+                        || contains(ms.getSubject_match_field(), finalMatch)
+                        || contains(ms.getObject_match_field(), finalMatch)
+                        || contains(ms.getObject_preprocessing(), finalMatch)
+                        || contains(ms.getSubject_preprocessing(), finalMatch)
+                        || contains(ms.getSee_also(), finalMatch)
+                        || contains(ms.getOther(), finalMatch)
+                        || contains(ms.getComment(), finalMatch))
                 .collect(Collectors.toList());
     }
 
@@ -129,6 +132,16 @@ public class MappingSetController {
         CacheSet
                 .getInstance(mappingSetRepository)
                 .rearm();
+    }
+
+    /**
+     * Checks if a string contains an other string
+     * taking into account enums that return a string
+     */
+    private boolean contains(Object param1, String param2) {
+        String param = (param1 == null) ? "" : param1.toString();
+        return (param1 != null && param2 != null)
+                && (param.toLowerCase().contains(param2.toLowerCase()) || param2.toLowerCase().contains(param.toLowerCase()));
     }
 
 }
