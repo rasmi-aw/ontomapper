@@ -66,20 +66,21 @@ public class MappingController {
             }
             //saving creators (as contributors) if they don't exist
             Mapping finalM = m;
-            mapping.getContributors().forEach(c -> {
-                Contributor contributor;
-                try {
-                    contributor = contributorRepository.save(c.toDBModel(null));
-                } catch (Exception e) {
-                    contributor = contributorRepository.findByContributorId(c.getId());
-                }
+            if (mapping.getContributors() != null)
+                mapping.getContributors().forEach(c -> {
+                    Contributor contributor;
+                    try {
+                        contributor = contributorRepository.save(c.toDBModel(null));
+                    } catch (Exception e) {
+                        contributor = contributorRepository.findByContributorId(c.getId());
+                    }
 
-                //
-                if (finalM != null) {
-                    List<Mapping> mappings1 = Stream.of(finalM).collect(Collectors.toList());
-                    contributionRepository.save(new Contribution(null, contributor, c.getType(), null, mappings1, false));
-                }
-            });
+                    //
+                    if (finalM != null) {
+                        List<Mapping> mappings1 = Stream.of(finalM).collect(Collectors.toList());
+                        contributionRepository.save(new Contribution(null, contributor, c.getType(), null, mappings1, false));
+                    }
+                });
         });
         //
 
