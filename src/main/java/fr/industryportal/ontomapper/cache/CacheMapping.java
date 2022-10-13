@@ -55,11 +55,12 @@ public class CacheMapping {
      */
     public CacheMapping unify() {
         for (String q : mappings.keySet()) {
+            // get all mappings for every query
             List<Mapping> ms = mappings.get(q);
-            //
+            // exclude the current query to not compare it to itself
             Set<String> excluded = mappings.keySet();
             excluded.remove(q);
-            //
+            // for every other query compare mappings with current query mappings and unify similar objects (take the last added version and make it the only)
             for (String q1 : excluded) {
                 List<Mapping> ms1 = mappings.get(q1);
                 //
