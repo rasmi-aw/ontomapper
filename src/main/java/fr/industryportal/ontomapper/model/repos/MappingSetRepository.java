@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface MappingSetRepository extends JpaRepository<MappingSet, Long> {
 
-    @Query(value = "SELECT * FROM mapping_set WHERE mapping_set_id = :msid AND deleted <> true", nativeQuery = true)
+    @Query(value = "SELECT * FROM mapping_set WHERE mapping_set_id = :msid", nativeQuery = true)
     MappingSet findByStringId(String msid);
 
     @Override
