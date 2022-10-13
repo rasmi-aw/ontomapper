@@ -60,10 +60,10 @@ public class CacheMapping {
             // exclude the current query to not compare it to itself
             Set<String> excluded = mappings.keySet();
             excluded.remove(q);
-            // for every other query compare mappings with current query mappings and unify similar objects (take the last added version and make it the only)
+            // for every other query compare mappings with current query mappings and unify similar objects
             for (String q1 : excluded) {
                 List<Mapping> ms1 = mappings.get(q1);
-                //
+                // take the last added version and make it the only
                 ms.forEach(m -> {
                     int i = ms1.indexOf(m);
                     if (i > -1) {
