@@ -97,19 +97,20 @@ public class MappingSetController {
             }
             //saving creators (as contributors) if they don't exist
             MappingSet finalS = s;
-            setRequest.getCreators().forEach(c -> {
-                Contributor creator;
-                try {
-                    creator = contributorRepository.save(c.toDBModel(null));
-                } catch (Exception e) {
-                    creator = contributorRepository.findByContributorId(c.getId());
-                }
-                //
-                if (finalS != null) {
-                    List<MappingSet> mappingSets = Stream.of(finalS).collect(Collectors.toList());
-                    contributionRepository.save(new Contribution(null, creator, ContributorType.CREATOR, mappingSets, null, false));
-                }
-            });
+            if (setRequest.getCreators() != null)
+                setRequest.getCreators().forEach(c -> {
+                    Contributor creator;
+                    try {
+                        creator = contributorRepository.save(c.toDBModel(null));
+                    } catch (Exception e) {
+                        creator = contributorRepository.findByContributorId(c.getId());
+                    }
+                    //
+                    if (finalS != null) {
+                        List<MappingSet> mappingSets = Stream.of(finalS).collect(Collectors.toList());
+                        contributionRepository.save(new Contribution(null, creator, ContributorType.CREATOR, mappingSets, null, false));
+                    }
+                });
         });
         //
         CacheSet

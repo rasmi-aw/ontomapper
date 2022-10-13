@@ -41,7 +41,7 @@ public class MappingController {
     private ContributionRepository contributionRepository;
 
     /**
-     * get a list of mappings for a specefic set
+     * get a list of mappings for a specific set
      */
     @GetMapping("")
     public List<Mapping> getFiftyMappings(@RequestParam Long set_id, @RequestParam Long from) {
