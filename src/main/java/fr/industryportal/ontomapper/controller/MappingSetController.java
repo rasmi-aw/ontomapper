@@ -44,6 +44,37 @@ public class MappingSetController {
         return CacheSet.getInstance(mappingSetRepository).getSets();
     }
 
+    @GetMapping("/match")
+    public List<MappingSet> getSetsByStringMatch(@RequestParam String string) {
+        string = string.toLowerCase().trim();
+        String finalMatch = string;
+
+        return CacheSet
+                .getInstance(mappingSetRepository)
+                .getSets()
+                .stream()
+                .filter(ms ->
+                        ms.getMapping_set_id().toLowerCase().contains(finalMatch)
+                                || ms.getVersion().toLowerCase().contains(finalMatch)
+                                || ms.getDescription().toLowerCase().contains(finalMatch)
+                                || ms.getLicense().toLowerCase().contains(finalMatch)
+                                || ms.getSubject_type().getValue().toLowerCase().contains(finalMatch)
+                                || ms.getSubject_source().toLowerCase().contains(finalMatch)
+                                || ms.getSubject_source_version().toLowerCase().contains(finalMatch)
+                                || ms.getObject_type().getValue().toLowerCase().contains(finalMatch)
+                                || ms.getObject_source().toLowerCase().contains(finalMatch)
+                                || ms.getObject_source_version().toLowerCase().contains(finalMatch)
+                                || ms.getMapping_provider().toLowerCase().contains(finalMatch)
+                                || ms.getMapping_tool().toLowerCase().contains(finalMatch)
+                                || ms.getSubject_match_field().toLowerCase().contains(finalMatch)
+                                || ms.getObject_match_field().toLowerCase().contains(finalMatch)
+                                || ms.getObject_preprocessing().toLowerCase().contains(finalMatch)
+                                || ms.getSubject_preprocessing().toLowerCase().contains(finalMatch)
+                                || ms.getSee_also().toLowerCase().contains(finalMatch)
+                                || ms.getOther().toLowerCase().contains(finalMatch)
+                                || ms.getComment().toLowerCase().contains(finalMatch))
+                .collect(Collectors.toList());
+    }
 
     /**
      * Add or delete a list of mappingSets
