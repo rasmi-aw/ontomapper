@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Date;
 
@@ -24,6 +25,7 @@ import java.util.Date;
  * This is the main entrypoint of the app
  */
 @SpringBootApplication
+@EnableScheduling
 public class OntomapperApplication implements CommandLineRunner {
 
     @Autowired

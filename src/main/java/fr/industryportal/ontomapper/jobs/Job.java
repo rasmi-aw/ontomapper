@@ -16,6 +16,7 @@ public interface Job {
     int SEMESTER = 2 * TRIMESTER;
     int YEAR = 2 * SEMESTER;
     //
+    //
     String EVERY_DAY_MIDNIGHT = "0 0 0 * * *";
     String EVERY_DAY_MIDNIGHT_AND_HALF = "0 30 0 * * *";
 

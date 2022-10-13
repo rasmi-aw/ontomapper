@@ -4,7 +4,6 @@ import fr.industryportal.ontomapper.model.entities.Mapping;
 import fr.industryportal.ontomapper.model.repos.MappingRepository;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
