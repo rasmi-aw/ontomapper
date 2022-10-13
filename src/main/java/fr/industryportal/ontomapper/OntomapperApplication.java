@@ -1,13 +1,5 @@
 package fr.industryportal.ontomapper;
 
-import fr.industryportal.ontomapper.model.entities.Contribution;
-import fr.industryportal.ontomapper.model.entities.Contributor;
-import fr.industryportal.ontomapper.model.entities.Mapping;
-import fr.industryportal.ontomapper.model.entities.MappingSet;
-import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
-import fr.industryportal.ontomapper.model.entities.enums.EntityType;
-import fr.industryportal.ontomapper.model.entities.enums.MappingCardinality;
-import fr.industryportal.ontomapper.model.entities.enums.PredicateModifier;
 import fr.industryportal.ontomapper.model.repos.ContributionRepository;
 import fr.industryportal.ontomapper.model.repos.ContributorRepository;
 import fr.industryportal.ontomapper.model.repos.MappingRepository;
@@ -17,8 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-import java.util.Date;
 
 /**
  * @author Abdelwadoud Rasmi
