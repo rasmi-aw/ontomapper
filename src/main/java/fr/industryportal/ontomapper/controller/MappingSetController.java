@@ -46,6 +46,7 @@ public class MappingSetController {
 
     @GetMapping("/match")
     public List<MappingSet> getSetsByStringMatch(@RequestParam String string) {
+        System.out.println(string);
         string = string.toLowerCase().trim();
         String finalMatch = string;
 
@@ -86,8 +87,11 @@ public class MappingSetController {
             MappingSet s = setRequest.toDBModel(mappingSetRepository);
             // inserting or updating the mapping set
             s = mappingSetRepository.findByStringId(s.getMapping_set_id());
-            if (s == null)
+            if (s == null || !s.isDeleted()) {
+                if (s != null)
+                    setRequest.setId(s.getId());
                 s = mappingSetRepository.save(setRequest.toDBModel(mappingSetRepository));
+            }
             //saving creators (as contributors) if they don't exist
             MappingSet finalS = s;
             setRequest.getCreators().forEach(c -> {
@@ -97,14 +101,18 @@ public class MappingSetController {
                 } catch (Exception e) {
                     creator = contributorRepository.findByContributorId(c.getId());
                 }
-                List<MappingSet> mappingSets = Stream.of(finalS).collect(Collectors.toList());
-                contributionRepository.save(new Contribution(null, creator, ContributorType.CREATOR, mappingSets, null, false));
+                //
+                if (finalS != null) {
+                    List<MappingSet> mappingSets = Stream.of(finalS).collect(Collectors.toList());
+                    contributionRepository.save(new Contribution(null, creator, ContributorType.CREATOR, mappingSets, null, false));
+                }
             });
         });
         //
         CacheSet
                 .getInstance(mappingSetRepository)
                 .rearm();
+
     }
 
 
