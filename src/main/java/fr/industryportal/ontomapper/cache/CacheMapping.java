@@ -63,7 +63,16 @@ public class CacheMapping {
             for (String q1 : excluded) {
                 List<Mapping> ms1 = mappings.get(q1);
                 //
+                ms.forEach(m -> {
+                    int i = ms1.indexOf(m);
+                    if (i > -1) {
+                        Mapping lastVersion = ms1.get(i);
+                        int j = ms.indexOf(m);
+                        ms.remove(j);
+                        ms.add(j, lastVersion);
+                    }
 
+                });
 
             }
         }
