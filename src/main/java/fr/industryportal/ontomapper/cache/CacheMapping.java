@@ -79,4 +79,16 @@ public class CacheMapping {
         return this;
     }
 
+
+    /**
+     * Update mappings
+     */
+    public CacheMapping update(List<Mapping> mappings) {
+        if (mappings != null)
+            mappings.forEach(mapping -> {
+
+            });
+        return this;
+    }
+
 }

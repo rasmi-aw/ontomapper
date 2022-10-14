@@ -16,6 +16,7 @@ import fr.industryportal.ontomapper.model.requests.MappingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -55,6 +56,7 @@ public class MappingController {
     @PostMapping("")
     public void addOrEditListOfMappings(@RequestBody List<MappingRequest> mappings) {
         //
+        List<Mapping> saved = new ArrayList<>();
         mappings.forEach(mapping -> {
             Mapping m = mapping.toDBModel(mappingSetRepository);
             // inserting or updating the mapping set
@@ -63,6 +65,7 @@ public class MappingController {
                 if (m != null)
                     mapping.setId(m.getId());
                 m = mappingRepository.save(mapping.toDBModel(mappingSetRepository));
+                saved.add(m);
             }
             //saving creators (as contributors) if they don't exist
             Mapping finalM = m;
@@ -82,7 +85,11 @@ public class MappingController {
                     }
                 });
         });
-        //
+        // Update cache
+        CacheMapping
+                .getInstance(mappingRepository)
+                .update(saved);
+
 
     }
 }
