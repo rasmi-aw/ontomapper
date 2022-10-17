@@ -10,11 +10,13 @@
     </parent>
     <groupId>fr.industryportal</groupId>
     <artifactId>ontomapper</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>ontomapper</name>
     <description>ontomapper</description>
+    <packaging>war</packaging>
     <properties>
         <java.version>11</java.version>
+        <start-class>fr.industryportal.ontomapper.OntomapperApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -46,11 +48,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
         <!--Opensource library to manage files internally-->
         <dependency>
             <groupId>com.beastwall</groupId>
