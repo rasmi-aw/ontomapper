@@ -59,31 +59,37 @@ public class MappingController {
         List<Mapping> saved = new ArrayList<>();
         mappings.forEach(mapping -> {
             Mapping m = mapping.toDBModel(mappingSetRepository);
-            // inserting or updating the mapping set
+            // inserting or updating the mapping
             m = mappingRepository.findByStringId(m.getMapping_id());
             if (m == null || !m.isDeleted()) {
                 if (m != null)
                     mapping.setId(m.getId());
-                m = mappingRepository.save(mapping.toDBModel(mappingSetRepository));
-                saved.add(m);
+                // checking if the set has sources, if true then don't insert the mapping and skip tgis iteration
+                if (m.getSet().getSource().isEmpty()) {
+                    m = mappingRepository.save(mapping.toDBModel(mappingSetRepository));
+                    saved.add(m);
+                } else
+                    m = null;
             }
-            //saving creators (as contributors) if they don't exist
-            Mapping finalM = m;
-            if (mapping.getContributors() != null)
-                mapping.getContributors().forEach(c -> {
-                    Contributor contributor;
-                    try {
-                        contributor = contributorRepository.save(c.toDBModel(null));
-                    } catch (Exception e) {
-                        contributor = contributorRepository.findByContributorId(c.getId());
-                    }
+            //saving contributors if they don't exist and if the mapping was saved in the previous step
+            if (m != null) {
+                Mapping finalM = m;
+                if (mapping.getContributors() != null)
+                    mapping.getContributors().forEach(c -> {
+                        Contributor contributor;
+                        try {
+                            contributor = contributorRepository.save(c.toDBModel(null));
+                        } catch (Exception e) {
+                            contributor = contributorRepository.findByContributorId(c.getId());
+                        }
 
-                    //
-                    if (finalM != null) {
-                        List<Mapping> mappings1 = Stream.of(finalM).collect(Collectors.toList());
-                        contributionRepository.save(new Contribution(null, contributor, c.getType(), null, mappings1, false));
-                    }
-                });
+                        //
+                        if (finalM != null) {
+                            List<Mapping> mappings1 = Stream.of(finalM).collect(Collectors.toList());
+                            contributionRepository.save(new Contribution(null, contributor, c.getType(), null, mappings1, false));
+                        }
+                    });
+            }
         });
         // Update cache
         CacheMapping
