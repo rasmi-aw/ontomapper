@@ -39,6 +39,11 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         }
         //
         filterChain.doFilter(request, response);
+    }
 
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String url = request.getRequestURI();
+        return !(url.contains("/swagger-ui/index.html#") && url.contains("v2"));
     }
 }

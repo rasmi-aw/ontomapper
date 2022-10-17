@@ -59,10 +59,11 @@
             <artifactId>storage-manager</artifactId>
             <version>1.0.2</version>
         </dependency>
-        <!--Swagger to expose all apps endpoints-->
+
+        <!--Swagger api and ui-->
         <dependency>
             <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
+            <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
         </dependency>
 
