@@ -103,7 +103,5 @@ public class MappingController {
         CacheMapping
                 .getInstance(mappingRepository)
                 .update(saved);
-
-
     }
 }
