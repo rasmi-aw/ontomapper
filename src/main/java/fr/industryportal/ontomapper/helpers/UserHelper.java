@@ -1,6 +1,5 @@
 package fr.industryportal.ontomapper.helpers;
 
-import fr.industryportal.ontomapper.OntomapperApplication;
 import fr.industryportal.ontomapper.config.Config;
 import fr.industryportal.ontomapper.model.requests.User;
 import org.springframework.cloud.openfeign.FeignClient;
