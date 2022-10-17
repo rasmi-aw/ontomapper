@@ -5,6 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * @author Abdelwadoud Rasmi
  * Controller to manage contributions
@@ -22,5 +27,16 @@ public class RootController {
         json.put("project_repo", "https://github.com/rasmi-aw/ontomapper");
         json.put("note", "You have to provide the api-key and username while submitting your requests");
         return json;
+    }
+
+
+    @GetMapping("/api")
+    public void showApiUi(HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("/swagger-ui/index.html#");
+    }
+
+    @GetMapping("/api/json")
+    public void showApiJson(HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("/v2/api-docs");
     }
 }
