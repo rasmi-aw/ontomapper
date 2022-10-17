@@ -4,6 +4,7 @@ import fr.industryportal.ontomapper.model.entities.MappingSet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * @author Abdelwadoud Rasmi
  */
+@RepositoryRestResource(exported = false)
 public interface MappingSetRepository extends JpaRepository<MappingSet, Long> {
 
     @Query(value = "SELECT * FROM mapping_set WHERE mapping_set_id = :msid", nativeQuery = true)
