@@ -1,11 +1,8 @@
 package fr.industryportal.ontomapper.model.requests;
 
 import fr.industryportal.ontomapper.helpers.DBCast;
-import fr.industryportal.ontomapper.model.entities.Contributor;
 import fr.industryportal.ontomapper.model.entities.MappingSet;
 import fr.industryportal.ontomapper.model.entities.enums.EntityType;
-import fr.industryportal.ontomapper.model.repos.ContributionRepository;
-import fr.industryportal.ontomapper.model.repos.ContributorRepository;
 import fr.industryportal.ontomapper.model.repos.MappingSetRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

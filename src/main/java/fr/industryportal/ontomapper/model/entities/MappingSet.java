@@ -1,6 +1,5 @@
 package fr.industryportal.ontomapper.model.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.industryportal.ontomapper.model.entities.enums.EntityType;
 import lombok.AllArgsConstructor;
