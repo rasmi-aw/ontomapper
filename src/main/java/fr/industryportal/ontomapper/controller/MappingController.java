@@ -46,8 +46,16 @@ public class MappingController {
      */
     @GetMapping("")
     public List<Mapping> getFiftyMappings(@RequestParam Long set_id, @RequestParam Long from) {
-        return CacheMapping.getInstance(mappingRepository).get(set_id, from);
-
+        MappingSet mappingSet = new MappingSet();
+        mappingSet.setId(set_id);
+        //
+        if (mappingSet.getSource().isEmpty())
+            return CacheMapping.getInstance(mappingRepository).get(set_id, from);
+        else {
+            List<Mapping> mappings = new ArrayList<>();
+            mappingSet.getSource().forEach(ms -> mappings.addAll(CacheMapping.getInstance(mappingRepository).get(ms.getId(), from)));
+            return mappings;
+        }
     }
 
     /**
