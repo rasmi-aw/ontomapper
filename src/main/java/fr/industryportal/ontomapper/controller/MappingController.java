@@ -2,12 +2,10 @@ package fr.industryportal.ontomapper.controller;
 
 
 import fr.industryportal.ontomapper.cache.CacheMapping;
-import fr.industryportal.ontomapper.cache.CacheSet;
 import fr.industryportal.ontomapper.model.entities.Contribution;
 import fr.industryportal.ontomapper.model.entities.Contributor;
 import fr.industryportal.ontomapper.model.entities.Mapping;
 import fr.industryportal.ontomapper.model.entities.MappingSet;
-import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
 import fr.industryportal.ontomapper.model.repos.ContributionRepository;
 import fr.industryportal.ontomapper.model.repos.ContributorRepository;
 import fr.industryportal.ontomapper.model.repos.MappingRepository;
