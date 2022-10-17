@@ -28,7 +28,10 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected boolean shouldNotFilterErrorDispatch() {
-        return super.shouldNotFilterErrorDispatch();
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String apikey = request.getParameter("apikey");
+        //
+
+        return super.shouldNotFilter(request);
     }
 }
