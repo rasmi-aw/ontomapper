@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author Abdelwadoud Rasmi
  * Controller to manage contributions
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RootController {
 
     @GetMapping("")
-    public JSONObject getRoot() {
+    public JSONObject getRoot(HttpServletRequest request) {
         JSONObject json = new JSONObject();
         json.put("developer", "Abdelouadoud Rasmi");
         json.put("email", "abdelouadoudrasmi@gmail.com");
@@ -22,7 +24,7 @@ public class RootController {
         json.put("project_repo", "https://github.com/rasmi-aw/ontomapper");
         json.put("note", "You have to provide the api-key and username while submitting your requests");
         json.put("description", "This service is a mapping storing service that you can add to your Ontoportal instance, it uses the SSSOM standard.");
-        json.put("api", "/api/ui");
+        json.put("api", "/swagger-ui/index.html#");
         return json;
     }
 
