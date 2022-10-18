@@ -47,7 +47,7 @@ public class MappingController {
         MappingSet mappingSet = new MappingSet();
         mappingSet.setId(set_id);
         //
-        if (mappingSet.getSource().isEmpty())
+        if (mappingSet.getSource() == null || mappingSet.getSource().isEmpty())
             return CacheMapping.getInstance(mappingRepository).get(set_id, from);
         else {
             List<Mapping> mappings = new ArrayList<>();
