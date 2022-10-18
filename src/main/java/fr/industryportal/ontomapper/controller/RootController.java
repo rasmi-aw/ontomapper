@@ -1,15 +1,9 @@
 package fr.industryportal.ontomapper.controller;
 
-import fr.industryportal.ontomapper.model.requests.User;
 import net.minidev.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * @author Abdelwadoud Rasmi
@@ -27,25 +21,9 @@ public class RootController {
         json.put("github", "https://github.com/rasmi-aw");
         json.put("project_repo", "https://github.com/rasmi-aw/ontomapper");
         json.put("note", "You have to provide the api-key and username while submitting your requests");
+        json.put("description", "This service is a mapping storing service that you can add to your Ontoportal instance, it uses the SSSOM standard.");
+        json.put("api", "/api/ui");
         return json;
     }
 
-
-    @GetMapping("/api")
-    public void showApiUi(HttpServletRequest request,
-                          HttpServletResponse response) throws ServletException, IOException {
-        //
-        request
-                .getRequestDispatcher("/swagger-ui/index.html#")
-                .forward(request,response);
-    }
-
-    @GetMapping("/api/json")
-    public void showApiJson(HttpServletRequest request,
-                            HttpServletResponse response) throws ServletException, IOException {
-        //
-        request.getRequestDispatcher("/v2/api-docs")
-                .forward(request,response);
-
-    }
 }
