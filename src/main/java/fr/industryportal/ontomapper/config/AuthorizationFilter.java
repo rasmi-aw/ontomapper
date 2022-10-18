@@ -33,11 +33,26 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         try {
             // check if the user exists
             user = userHelper.getUser(username, apikey);
+            user.setApikey(apikey);
             request.setAttribute("user", user);
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "You must provide a valid username and a valid apikey, thank you.");
+            return;
         }
         //
         filterChain.doFilter(request, response);
+    }
+
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String url = request.getServletPath();
+        return url.equalsIgnoreCase("/swagger-ui/index.html")
+                || url.equals("/v2/api-docs")
+                || url.equals("/api/json")
+                || url.equals("/api")
+                || url.contains("swagger")
+                || url.contains("springfox")
+                || url.contains("/favicon-");
     }
 }

@@ -34,6 +34,9 @@ public class User {
     @JsonProperty(value = "@id")
     private String id;
 
+    @Getter
+    @Setter
+    private String apikey;
 
     @Override
     public String toString() {

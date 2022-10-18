@@ -1,11 +1,13 @@
 package fr.industryportal.ontomapper.controller;
 
+import fr.industryportal.ontomapper.model.requests.User;
 import net.minidev.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -30,12 +32,20 @@ public class RootController {
 
 
     @GetMapping("/api")
-    public void showApiUi(HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/swagger-ui/index.html#");
+    public void showApiUi(HttpServletRequest request,
+                          HttpServletResponse response) throws ServletException, IOException {
+        //
+        request
+                .getRequestDispatcher("/swagger-ui/index.html#")
+                .forward(request,response);
     }
 
     @GetMapping("/api/json")
-    public void showApiJson(HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/v2/api-docs");
+    public void showApiJson(HttpServletRequest request,
+                            HttpServletResponse response) throws ServletException, IOException {
+        //
+        request.getRequestDispatcher("/v2/api-docs")
+                .forward(request,response);
+
     }
 }
