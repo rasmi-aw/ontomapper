@@ -1,12 +1,10 @@
 package fr.industryportal.ontomapper.controller;
 
 import fr.industryportal.ontomapper.cache.CacheSet;
-import fr.industryportal.ontomapper.config.Config;
 import fr.industryportal.ontomapper.model.entities.Contribution;
 import fr.industryportal.ontomapper.model.entities.Contributor;
 import fr.industryportal.ontomapper.model.entities.MappingSet;
 import fr.industryportal.ontomapper.model.entities.enums.ContributorType;
-import fr.industryportal.ontomapper.model.entities.enums.EntityType;
 import fr.industryportal.ontomapper.model.repos.ContributionRepository;
 import fr.industryportal.ontomapper.model.repos.ContributorRepository;
 import fr.industryportal.ontomapper.model.repos.MappingRepository;
@@ -94,16 +92,15 @@ public class MappingSetController {
         User user = ((User) request.getAttribute("user"));
         //
         sets.forEach(setRequest -> {
-            MappingSet s = setRequest.toDBModel(mappingSetRepository);
+            MappingSet s = setRequest.toDBModel(mappingSetRepository, user.getApikey());
             // inserting or updating the mapping set
             s = mappingSetRepository.findByStringId(s.getMapping_set_id());
 
             if (s == null || !s.isDeleted()) {
-                if (s != null) {
+                if (s != null)
                     setRequest.setId(s.getId());
-                    s.setCreatedby(user.getApikey());
-                }
-                s = mappingSetRepository.save(setRequest.toDBModel(mappingSetRepository));
+
+                s = mappingSetRepository.save(setRequest.toDBModel(mappingSetRepository, user.getApikey()));
             }
             //saving creators (as contributors) if they don't exist
             MappingSet finalS = s;

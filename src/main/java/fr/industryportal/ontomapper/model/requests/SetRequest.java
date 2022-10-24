@@ -114,8 +114,8 @@ public class SetRequest implements DBCast<MappingSet, MappingSetRepository> {
     private String comment;
 
     @Override
-    public MappingSet toDBModel(MappingSetRepository mappingSetRepository) {
-        return new MappingSet(id, mapping_set_id, version,
+    public MappingSet toDBModel(MappingSetRepository mappingSetRepository, String createdBY) {
+        return new MappingSet(id, createdBY, mapping_set_id, version,
                 source == null ? null : mappingSetRepository.findAllById(source), description,
                 null, license, subject_type, subject_source, subject_source_version,
                 object_type, object_source, object_source_version, mapping_provider,
