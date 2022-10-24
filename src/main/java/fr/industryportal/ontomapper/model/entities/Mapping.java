@@ -31,6 +31,7 @@ public class Mapping {
     @Id
     @Getter
     @Setter
+    @Column(updatable = false)
     @JsonIgnore
     private String createdby;
 

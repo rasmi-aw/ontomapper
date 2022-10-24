@@ -29,6 +29,7 @@ public class MappingSet {
     @Id
     @Getter
     @Setter
+    @Column(updatable = false)
     @JsonIgnore
     private String createdby;
 
