@@ -26,6 +26,12 @@ public class MappingSet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Id
+    @Getter
+    @Setter
+    @JsonIgnore
+    private String createdby;
+
     @Getter
     @Setter
     @Column(unique = true, updatable = false)
