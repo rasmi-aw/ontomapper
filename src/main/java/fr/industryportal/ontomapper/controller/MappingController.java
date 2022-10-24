@@ -11,11 +11,14 @@ import fr.industryportal.ontomapper.model.repos.ContributorRepository;
 import fr.industryportal.ontomapper.model.repos.MappingRepository;
 import fr.industryportal.ontomapper.model.repos.MappingSetRepository;
 import fr.industryportal.ontomapper.model.requests.MappingRequest;
+import fr.industryportal.ontomapper.model.requests.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -60,19 +63,22 @@ public class MappingController {
      * Add or delete a list of mappings
      */
     @PostMapping("")
-    public void addOrEditListOfMappings(@RequestBody List<MappingRequest> mappings) {
+    public void addOrEditListOfMappings(HttpServletRequest request,
+                                        @RequestBody List<MappingRequest> mappings) {
+        User user = ((User) request.getAttribute("user"));
         //
         List<Mapping> saved = new ArrayList<>();
         mappings.forEach(mapping -> {
-            Mapping m = mapping.toDBModel(mappingSetRepository);
+            Mapping m = mapping.toDBModel(mappingSetRepository, user.getApikey());
             // inserting or updating the mapping
             m = mappingRepository.findByStringId(m.getMapping_id());
             if (m == null || !m.isDeleted()) {
                 if (m != null)
                     mapping.setId(m.getId());
+
                 // checking if the set has sources, if true then don't insert the mapping and skip tgis iteration
                 if (m.getSet().getSource().isEmpty()) {
-                    m = mappingRepository.save(mapping.toDBModel(mappingSetRepository));
+                    m = mappingRepository.save(mapping.toDBModel(mappingSetRepository, user.getApikey()));
                     saved.add(m);
                 } else
                     m = null;
@@ -102,4 +108,23 @@ public class MappingController {
                 .getInstance(mappingRepository)
                 .update(saved);
     }
+
+    /**
+     * Delete a mapping set along with its mappings
+     */
+    @DeleteMapping("")
+    public void deleteMapping(HttpServletRequest request,
+                              @RequestParam Long mapping) {
+
+        User user = ((User) request.getAttribute("user"));
+        //
+        Optional<Mapping> m = mappingRepository.findById(mapping);
+        if (m.isPresent() && (user.getRoles().contains("ADMINISTRATOR") ||
+                user.getApikey().equals(m.get().getCreatedby()))) {
+            //
+            mappingRepository.deleteById(mapping);
+        }
+
+    }
+
 }

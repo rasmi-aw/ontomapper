@@ -131,7 +131,7 @@ public class MappingSetController {
      * Delete a mapping set along with its mappings
      */
     @DeleteMapping("")
-    public void deleteSets(HttpServletRequest request,
+    public void deleteSet(HttpServletRequest request,
                            @RequestParam Long set) {
 
         User user = ((User) request.getAttribute("user"));

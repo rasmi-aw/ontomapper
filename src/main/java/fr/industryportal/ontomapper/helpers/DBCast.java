@@ -9,5 +9,5 @@ public interface DBCast<Entity, Repository> {
     /**
      * convert a request into a db model
      */
-    Entity toDBModel(Repository repository);
+    Entity toDBModel(Repository repository,String createdby);
 }

@@ -31,6 +31,11 @@ public interface MappingRepository extends JpaRepository<Mapping, Long> {
     @Query(value = "UPDATE mapping  SET deleted = TRUE WHERE set_id = :set_id", nativeQuery = true)
     void deleteBySetId(Long set_id);
 
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE mapping  SET deleted = TRUE WHERE id = :id", nativeQuery = true)
+    void deleteById(Long id);
+
     @Query(value = "SELECT * FROM mapping WHERE mapping_id = :mid", nativeQuery = true)
     Mapping findByStringId(String mid);
 

@@ -180,9 +180,8 @@ public class MappingRequest implements DBCast<Mapping, MappingSetRepository> {
 
 
     @Override
-    public Mapping toDBModel(MappingSetRepository mappingSetRepository) {
-        return new Mapping(
-                id, mapping_id, subject_id, subject_label, subject_category,
+    public Mapping toDBModel(MappingSetRepository mappingSetRepository, String createdBy) {
+        return new Mapping(id, createdBy, mapping_id, subject_id, subject_label, subject_category,
                 predicate_id, predicate_label, predicate_modifier, object_id,
                 object_label, object_category, justification, null,
                 license, subject_type, subject_source, subject_source_version,
@@ -192,6 +191,6 @@ public class MappingRequest implements DBCast<Mapping, MappingSetRepository> {
                 object_match_field, match_string, subject_preprocessing,
                 object_preprocessing, semantic_similarity_score, semantic_similarity_measure,
                 see_also, other, comment, new Date(),
-                mappingSetRepository.findById(set_id).get(),false);
+                mappingSetRepository.findById(set_id).get(), false);
     }
 }
