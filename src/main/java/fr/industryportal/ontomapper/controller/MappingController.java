@@ -90,7 +90,7 @@ public class MappingController {
                     mapping.getContributors().forEach(c -> {
                         Contributor contributor;
                         try {
-                            contributor = contributorRepository.save(c.toDBModel(null));
+                            contributor = contributorRepository.save(c.toDBModel(null, user.getApikey()));
                         } catch (Exception e) {
                             contributor = contributorRepository.findByContributorId(c.getId());
                         }

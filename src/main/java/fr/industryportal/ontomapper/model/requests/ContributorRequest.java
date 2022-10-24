@@ -33,7 +33,7 @@ public class ContributorRequest implements DBCast<Contributor, Void> {
     private ContributorType type;
 
     @Override
-    public Contributor toDBModel(Void unused) {
+    public Contributor toDBModel(Void unused, String createdBy) {
         return new Contributor(null, id, label, null,false);
     }
 }

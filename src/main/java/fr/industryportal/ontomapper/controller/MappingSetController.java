@@ -108,7 +108,7 @@ public class MappingSetController {
                 setRequest.getCreators().forEach(c -> {
                     Contributor creator;
                     try {
-                        creator = contributorRepository.save(c.toDBModel(null));
+                        creator = contributorRepository.save(c.toDBModel(null, user.getApikey()));
                     } catch (Exception e) {
                         creator = contributorRepository.findByContributorId(c.getId());
                     }
@@ -132,7 +132,7 @@ public class MappingSetController {
      */
     @DeleteMapping("")
     public void deleteSet(HttpServletRequest request,
-                           @RequestParam Long set) {
+                          @RequestParam Long set) {
 
         User user = ((User) request.getAttribute("user"));
         //

@@ -28,7 +28,6 @@ public class Mapping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Id
     @Getter
     @Setter
     @Column(updatable = false)
