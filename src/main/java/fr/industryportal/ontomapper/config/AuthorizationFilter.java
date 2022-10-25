@@ -51,6 +51,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
                 || url.equals("/v2/api-docs")
                 || url.equals("/api/json")
                 || url.equals("/api")
+                || url.contains("/h2-console")
                 || url.contains("swagger")
                 || url.contains("springfox")
                 || url.contains("/favicon-")
