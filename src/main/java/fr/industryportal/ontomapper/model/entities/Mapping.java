@@ -20,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(indexes = {@Index(name = "created_by", columnList = "created_by")})
 public class Mapping {
 
     @Id

@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(indexes = {@Index(name = "", columnList = "contributor_id", unique = true)})
 public class Contributor {
 
     @Id
